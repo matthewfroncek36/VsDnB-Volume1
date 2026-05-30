@@ -8,18 +8,13 @@ import openfl.utils.Assets;
  */
 class RuntimeShader extends FlxRuntimeShader
 {
-	public function new(fragmentSource:String, ?vertexSource:String)
+	public function new(fragmentSource:String)
 	{
 		#if SHADERS_ENABLED
-		var fragSource:String = Assets.getText(fragmentSource);
-
-		var vertSource:Null<String> = null;
-		if (vertexSource != null)
-			vertSource = Assets.getText(vertexSource);
+		var fragSource = Assets.getText(fragmentSource);
 		#else
-		var fragSource:String = '';
-		var vertSource:String = '';
+		var fragSource = '';
 		#end
-		super(fragSource, vertSource, null, null);
+		super(fragSource);
 	}
 }
