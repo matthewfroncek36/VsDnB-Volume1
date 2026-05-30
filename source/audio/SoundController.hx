@@ -94,7 +94,7 @@ class SoundController
 			music.stop();
 		}
 
-		music.load(embeddedMusic);
+		music.loadEmbedded(embeddedMusic);
 		music.looped = looped;
 		music.volume = volume;
 		music.persist = true;
@@ -119,7 +119,7 @@ class SoundController
 		if ((embeddedSound is String))
 			embeddedSound = cache(cast embeddedSound);
 
-		var sound:GameSound = pool.recycle(construct).load(embeddedSound);
+		var sound:GameSound = pool.recycle(construct).loadEmbedded(embeddedSound);
 		sound.soundType = soundType;
 		sound.looped = looped;
 		sound.autoDestroy = autoDestroy;
