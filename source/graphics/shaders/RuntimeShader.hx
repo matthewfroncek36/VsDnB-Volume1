@@ -3,9 +3,6 @@ package graphics.shaders;
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.utils.Assets;
 
-/**
- * A shader that's generated at runtime instead of being complied.
- */
 class RuntimeShader extends FlxRuntimeShader
 {
 	public function new(fragmentSource:String)
@@ -15,6 +12,7 @@ class RuntimeShader extends FlxRuntimeShader
 		#else
 		var fragSource = '';
 		#end
-		super(fragSource);
+
+		super(fragSource, null, "120", "2");
 	}
 }
