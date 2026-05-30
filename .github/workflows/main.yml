@@ -45,7 +45,7 @@ jobs:
           haxelib git funkin.vis https://github.com/T5mpler/funkVis-dnb.git main
           haxelib git flixel-animate https://github.com/MaybeMaru/flixel-animate.git aae07578e60a83347e8189af1b312d69d05215b8
           haxelib git hscript https://github.com/T5mpler/hscript-dnb.git dfa1f291224942a585e412fd0a2d3b14e1370980
-          haxelib git polymod https://github.com/T5mpler/polymod-dnb.git d2d73608e63cf8c6672a19568557fa0ab7882628
+          haxelib git polymod https://github.com/T5mpler/polymod-dnb.git
           haxelib git json2object https://github.com/FunkinCrew/json2object a8c26f18463c98da32f744c214fe02273e1823fa
           haxelib git thx.core https://github.com/fponticelli/thx.core.git master
           haxelib git jsonpatch https://github.com/EliteMasterEric/jsonpatch f9b83215acd586dc28754b4ae7f69d4c06c3b4d3
