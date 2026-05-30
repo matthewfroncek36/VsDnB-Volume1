@@ -20,6 +20,6 @@ class RuntimeShader extends FlxRuntimeShader
 		var fragSource:String = '';
 		var vertSource:String = '';
 		#end
-		super(fragSource, vertSource);
+		super(fragSource, vertSource, null, null);
 	}
 }

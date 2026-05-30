@@ -256,15 +256,16 @@ class Dialogue extends FlxSpriteGroup implements IDialogueScriptedClass implemen
      */
     function buildMusic():Void
     {
-        if (dialogueMusicPath != null)
-        {
-            this.music = new GameSound().load(Paths.music(dialogueMusicPath));
-            this.music.looped = true;
-            SoundController.add(this.music);
-            startMusicFadeIn();
-            
-            this.music.play();
-        }
+if (dialogueMusicPath != null)
+{
+	this.music = new GameSound();
+	this.music.loadEmbedded(Paths.music(dialogueMusicPath));
+	this.music.looped = true;
+	SoundController.add(this.music);
+	startMusicFadeIn();
+
+	this.music.play();
+}
 	}
 
 	function startMusicFadeIn():Void

@@ -81,7 +81,7 @@ class ReloadAssetsPlugin extends FlxBasic
                     // Load a new script class instance through here.
                     PolymodManager.reloadAssets();
 
-                    var state:Dynamic = ScriptedFlxState.scriptInit(name);
+                    var state:Dynamic = ScriptedFlxState.init(name);
                     FlxG.switchState(state);
                 }
             }

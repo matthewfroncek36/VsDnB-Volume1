@@ -147,7 +147,7 @@ class SubtitleManager extends FlxSpriteGroup implements IRegistryEntry<SongSubti
 		var scriptClass:Null<String> = data.scriptClass ?? subtitleScriptClass ?? null;
 		if (scriptClass != null)
 		{
-			subtitle = ScriptedSubtitle.scriptInit(scriptClass, data, this);
+			subtitle = ScriptedSubtitle.init(scriptClass, data, this);
 		}
 		else
 		{

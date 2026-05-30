@@ -147,7 +147,8 @@ class SoundController
 		if (embeddedSound == null)
 			return null;
 
-		var sound:GameSound = pool.recycle(construct).load(embeddedSound);
+		var sound:GameSound = cast pool.recycle(construct);
+        sound.loadEmbedded(embeddedSound);
 		sound.soundType = soundType;
 		sound.looped = looped;
 		sound.autoDestroy = autoDestroy;

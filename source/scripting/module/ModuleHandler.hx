@@ -25,7 +25,7 @@ class ModuleHandler
 
         for (moduleClass in moduleScriptClasses)
         {
-            var module:Module = ScriptedModule.scriptInit(moduleClass, moduleClass);
+            var module:Module = ScriptedModule.init(moduleClass, moduleClass);
 
             if (module != null)
             {

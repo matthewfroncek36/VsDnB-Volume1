@@ -47,7 +47,7 @@ class SubtitleRegistry extends BaseRegistry<SubtitleManager, SongSubtitleData>
 
     function createScriptedEntry(clsName:String):SubtitleManager
     {
-        return ScriptedSubtitleManager.scriptInit(clsName, 'subtitle');
+        return ScriptedSubtitleManager.init(clsName, 'subtitle');
     }
 
     function getScriptedClasses():Array<String>

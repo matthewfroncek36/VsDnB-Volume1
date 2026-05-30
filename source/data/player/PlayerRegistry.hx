@@ -49,7 +49,7 @@ class PlayerRegistry extends BaseRegistry<PlayableCharacter, PlayerData>
 
     function createScriptedEntry(clsName:String):PlayableCharacter
     {
-        return ScriptedPlayableCharacter.scriptInit(clsName, 'stage');
+        return ScriptedPlayableCharacter.init(clsName, 'stage');
     }
 
     function getScriptedClasses():Array<String>

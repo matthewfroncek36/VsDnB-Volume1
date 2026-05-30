@@ -37,7 +37,7 @@ class SongModuleHandler
         for (moduleClass in moduleScriptClasses)
         {
             // Create the song module with generic arguments, they don't matter.
-            var module:ScriptedSongModule = ScriptedSongModule.scriptInit(moduleClass, moduleClass, 0, 'warmup');
+            var module:ScriptedSongModule = ScriptedSongModule.init(moduleClass, moduleClass, 0, 'warmup');
             if (module != null)
             {
                 if (!songModuleCache.exists(module.songId))
@@ -70,7 +70,7 @@ class SongModuleHandler
         // Instantiate the modules.
         for (moduleCls in moduleClasses)
         {
-            var module:ScriptedSongModule = ScriptedSongModule.scriptInit(moduleCls, moduleCls, 0, songId, variationId);
+            var module:ScriptedSongModule = ScriptedSongModule.init(moduleCls, moduleCls, 0, songId, variationId);
             if (module != null)
             {
                 loadedSongModules.push(module);

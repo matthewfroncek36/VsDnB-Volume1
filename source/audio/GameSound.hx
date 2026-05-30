@@ -36,11 +36,11 @@ class GameSound extends FlxSound
 	 * @param onComplete Called when the audio is finished.
 	 * @return -> Void):GameSound
 	 */
-	public function load(embeddedSound:FlxSoundAsset, looped:Bool = false, autoDestroy:Bool = false, ?onComplete:() -> Void):GameSound
-	{
-		loadEmbedded(embeddedSound, looped, autoDestroy, onComplete);
-		return this;
-	}
+public function loadGameSound(embeddedSound:FlxSoundAsset, looped:Bool = false, autoDestroy:Bool = false, ?onComplete:Void->Void):GameSound
+{
+	loadEmbedded(embeddedSound, looped, autoDestroy, onComplete);
+	return this;
+}
 
 	// Override to take into account the user volume preferences.
 	override function updateTransform():Void
