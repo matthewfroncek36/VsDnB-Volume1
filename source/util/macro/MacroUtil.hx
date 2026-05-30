@@ -46,7 +46,7 @@ class MacroUtil
   //
 
   /**
-   * Convert an ExprOf<Class<T>> to a ClassType.
+   * Convert an ExprOf<Class<Dynamic>> to a ClassType.
    * @see https://github.com/jasononeil/compiletime/blob/master/src/CompileTime.hx#L201
    * @param e The expression to convert.
    * @return The `ClassType`
