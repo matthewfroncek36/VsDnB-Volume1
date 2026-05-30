@@ -36,6 +36,7 @@ jobs:
           haxelib install hmm
           haxelib run hmm setup
           haxelib run hmm install
+          haxelib install hxvlc
           haxelib list
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
@@ -67,6 +68,7 @@ jobs:
           haxelib install hmm
           haxelib run hmm setup
           haxelib run hmm install
+          haxelib install hxvlc
           haxelib list
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
@@ -94,6 +96,7 @@ jobs:
           haxelib install hmm
           haxelib run hmm setup
           haxelib run hmm install
+          haxelib install hxvlc
           haxelib list
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
