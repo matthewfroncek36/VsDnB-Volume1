@@ -75,7 +75,7 @@ abstract class BaseRegistry<T:(IRegistryEntry<J> & Constructible<EntryConstructo
         // Create entries from all of the scripted classes.
 		for (cls in scriptedClasses)
 		{            
-			var scriptedEntry:T = createScriptedEntry(cls);
+			var scriptedEntry:Dynamic = createScriptedEntry(cls);
 
 			if (scriptedEntry != null)
 			{
@@ -100,7 +100,7 @@ abstract class BaseRegistry<T:(IRegistryEntry<J> & Constructible<EntryConstructo
         // Populate list with the rest of the entries.
         for (entryId in unscriptedEntries)
         {
-            var entry:T = createEntry(entryId);
+            var entry:Dynamic = createEntry(entryId);
             if (entry != null)
             {
                 entries.set(entry.id, entry);
@@ -262,7 +262,7 @@ abstract class BaseRegistry<T:(IRegistryEntry<J> & Constructible<EntryConstructo
      * @param clsName The scripted class name to create an entry off of.
      * @return A scripted entry.
      */
-    abstract function createScriptedEntry(clsName:String):T;
+    abstract function createScriptedEntry(clsName:String):Dynamic;
 
     /**
      * Retrieves a list of all of the class names of every scripted entry.
