@@ -1,10 +1,12 @@
 package play.character;
 
 import backend.Conductor;
+import Paths;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
-import openfl.utils.Assets;
+using StringTools;
+
 #if (!flash && sys)
 import flixel.addons.display.FlxRuntimeShader;
 #end
@@ -47,14 +49,12 @@ class FlareonCharacter extends Character
 	var mouth:FlxSprite;
 	var fireball:FlxSprite;
 
-	var curCharacter:String = "flareon";
-	var healthIcon:String = "flareon-pixel";
-	var healthColorArray:Array<Int> = [247, 123, 62];
-	var hasMissAnimations:Bool = true;
+	static inline final FLAREON_HEALTH_ICON:String = "flareon-pixel";
+	static final FLAREON_HEALTH_COLORS:Array<Int> = [247, 123, 62];
+
 	var specialAnim:Bool = false;
 	var skipDance:Bool = false;
 	var heyTimer:Float = 0;
-	var _lastPlayedAnimation:String = "";
 
 	var time:Float = 0;
 	var singPoseTime:Float = 0;
@@ -72,13 +72,12 @@ class FlareonCharacter extends Character
 		super(character);
 
 		setPosition(x, y);
-		characterType = isPlayer ? PLAYER : OPPONENT;
+		characterType = isPlayer ? CharacterType.PLAYER : CharacterType.OPPONENT;
 		singDuration = 4;
 		antialiasing = false;
-		characterColor = 0xFFF77B3E;
-		color = characterColor;
+		color = 0xFFF77B3E;
 		if (_data != null)
-			_data.icon = healthIcon;
+			_data.icon = FLAREON_HEALTH_ICON;
 
 		offset.set();
 		origin.set(width * 0.5, height * 0.5);
@@ -138,21 +137,24 @@ class FlareonCharacter extends Character
 
 	function makeOptionalPart(image:String):FlxSprite
 	{
-		if (Assets.exists(Paths.imagePath(image), openfl.utils.AssetType.IMAGE))
+		try
+		{
 			return makePart(image);
-
-		var spr = new FlxSprite();
-		spr.makeGraphic(1, 1, 0x00000000);
-		spr.visible = false;
-		spr.active = false;
-		spr.antialiasing = false;
-		return spr;
+		}
+		catch (e:Dynamic)
+		{
+			var spr = new FlxSprite();
+			spr.makeGraphic(1, 1, 0x00000000);
+			spr.visible = false;
+			spr.active = false;
+			spr.antialiasing = false;
+			return spr;
+		}
 	}
 
 	override function update(elapsed:Float)
 	{
-		if (debugMode)
-			super.update(elapsed);
+		super.update(elapsed);
 
 		if (missFlashTimer > 0)
 		{
@@ -202,7 +204,7 @@ class FlareonCharacter extends Character
 		updateFireball(elapsed);
 		holdTimer = currentAnim.startsWith('sing') ? holdTimer + elapsed : 0;
 		if (!debugMode
-			&& characterType != PLAYER
+			&& characterType != CharacterType.PLAYER
 			&& holdTimer >= Conductor.stepCrochet * (0.0011 #if FLX_PITCH / (FlxG.sound.music != null ? FlxG.sound.music.pitch : 1) #end) * singDuration)
 		{
 			dance();
@@ -796,16 +798,16 @@ class FlareonCharacter extends Character
 					}
 			],
 			image: getCharacterImagePath(outputFolder, sheetName),
-			scale: baseScale,
+			scale: scale.x,
 			sing_duration: singDuration,
-			healthicon: healthIcon,
+			healthicon: FLAREON_HEALTH_ICON,
 			position: [x, y],
-			camera_position: [cameraFocusPoint.x, cameraFocusPoint.y],
+			camera_position: [0, 0],
 			flip_x: flipX,
 			no_antialiasing: !antialiasing,
-			healthbar_colors: healthColorArray,
+			healthbar_colors: FLAREON_HEALTH_COLORS,
 			vocals_file: null,
-			_editor_isPlayer: characterType == PLAYER
+			_editor_isPlayer: characterType == CharacterType.PLAYER
 		};
 	}
 
@@ -980,7 +982,7 @@ class FlareonCharacter extends Character
 	{
 		spr.cameras = cameras;
 		spr.scrollFactor.copyFrom(scrollFactor);
-		spr.offset.copyFrom(offset);
+		spr.offset.set(offset.x, offset.y);
 		spr.alpha = alpha;
 		spr.visible = visible && partVisible;
 		spr.shader = shader;
@@ -1007,7 +1009,7 @@ class FlareonCharacter extends Character
 
 	function updateDropShadowFrameInfo(spr:FlxSprite)
 	{
-		#if (!flash && sys)
+#if (!flash && sys)
 		if (spr.shader == null || spr.frame == null || !Std.isOfType(spr.shader, FlxRuntimeShader))
 			return;
 
@@ -1023,7 +1025,6 @@ class FlareonCharacter extends Character
 		if (Force || getPoseAnim(currentAnim) != getPoseAnim(AnimName))
 			singPoseTime = 0;
 		currentAnim = AnimName;
-		_lastPlayedAnimation = AnimName;
 
 		if (animation.exists(AnimName))
 			animation.play(AnimName, Force, Reversed, Frame);
@@ -1063,7 +1064,8 @@ class FlareonCharacter extends Character
 		if (hasAnimation(AnimName))
 		{
 			var daOffset = animOffsets.get(AnimName);
-			offset.set(daOffset[0], daOffset[1]);
+			if (daOffset != null && daOffset.length >= 2)
+				offset.set(daOffset[0], daOffset[1]);
 		}
 	}
 
