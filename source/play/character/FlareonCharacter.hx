@@ -1014,7 +1014,7 @@ class FlareonCharacter extends Character
 			return;
 
 		var runtimeShader:FlxRuntimeShader = cast spr.shader;
-		runtimeShader.setFloatArray('uFrameBounds', [spr.frame.uv.x, spr.frame.uv.y, spr.frame.uv.width, spr.frame.uv.height]);
+		runtimeShader.setFloatArray('uFrameBounds', [spr.frame.uv.u, spr.frame.uv.v, spr.frame.uv.u2 - uv.u, spr.frame.uv.v2 - uv.v]);
 		runtimeShader.setFloat('angOffset', spr.frame.angle * (Math.PI / 180));
 		#end
 	}
